@@ -6,7 +6,7 @@
 // Time Limit: 1000
 // Start: Thu 03 Apr 2025 07:29:59 PM KST
 
-use std::{cmp, collections::BTreeSet};
+use std::cmp;
 
 struct TarjanSCC {
     scc: Vec<usize>,

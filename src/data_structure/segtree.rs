@@ -1,34 +1,4 @@
-// Problem: 길의 개수
-// Contest: unknown_contest
-// Judge: Baekjoon Online Judge
-// URL: https://www.acmicpc.net/problem/1533
-// Memory Limit: 128
-// Time Limit: 2000
-// Start: Sun 20 Apr 2025 04:18:22 PM KST
-
-#[allow(unused_imports)]
 use std::cmp::{max, min};
-use std::{
-    collections::HashMap,
-    io::{BufWriter, Write, stdin, stdout},
-};
-
-#[derive(Default)]
-struct Scanner {
-    buffer: Vec<String>,
-}
-impl Scanner {
-    fn next<T: std::str::FromStr>(&mut self) -> T {
-        loop {
-            if let Some(token) = self.buffer.pop() {
-                return token.parse().ok().expect("Failed parse");
-            }
-            let mut input = String::new();
-            stdin().read_line(&mut input).expect("Failed read");
-            self.buffer = input.split_whitespace().rev().map(String::from).collect();
-        }
-    }
-}
 
 struct SegTree<T, O> {
     n_tree: usize,
@@ -138,36 +108,4 @@ where
     fn query(&self, left: usize, right: usize) -> T {
         self.query_(1, 0, self.n_vec - 1, left, right).unwrap()
     }
-}
-
-fn main() {
-    let mut scan = Scanner::default();
-
-    let n = scan.next();
-    let mut a: Vec<usize> = (0..n).map(|_| scan.next()).collect();
-
-    let mut rank: HashMap<usize, usize> = HashMap::new();
-
-    for i in 0..n {
-        rank.insert(a[i], i);
-    }
-
-    for i in 0..n {
-        a[i] = scan.next();
-        a[i] = rank[&a[i]];
-    }
-
-    let mut b = vec![0_u32; n];
-
-    let mut cnt = 0_u64;
-
-    let op = |a, b| a + b;
-    let mut s_tree = SegTree::new(&b, 0_u64, op);
-
-    for i in (0..n).rev() {
-        cnt += s_tree.query(0, a[i]);
-        s_tree.update(a[i], 1_u64);
-    }
-
-    println!("{}", cnt);
 }

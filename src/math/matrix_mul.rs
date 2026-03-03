@@ -8,7 +8,7 @@
 
 const DIV: i64 = 1_000_000_007;
 
-fn multiply(a: &Vec<Vec<i64>>, b: &Vec<Vec<i64>>) -> Vec<Vec<i64>> {
+fn multiply(a: &[Vec<i64>], b: &[Vec<i64>]) -> Vec<Vec<i64>> {
     let row_a = a.len();
     let col_a = a[0].len();
     let row_b = b.len();

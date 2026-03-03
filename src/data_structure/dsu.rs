@@ -1,11 +1,3 @@
-// Problem: 교수님은 기다리지 않는다
-// Contest: unknown_contest
-// Judge: Baekjoon Online Judge
-// URL: https://www.acmicpc.net/problem/3830
-// Memory Limit: 256
-// Time Limit: 2000
-// Start: Tue 08 Apr 2025 11:46:19 PM KST
-
 use std::mem::swap;
 
 struct DisjointSet {
@@ -53,19 +45,4 @@ impl DisjointSet {
 
         self.root[u] = v;
     }
-}
-
-fn main() {
-    use std::fmt::Write;
-    let stdin = std::io::read_to_string(std::io::stdin()).unwrap();
-    let mut stdout = String::new();
-    let mut tokens = stdin.split_whitespace();
-    let mut next = || tokens.next().unwrap();
-    let t = next().parse().unwrap();
-    for _ in 0..t {
-        let a: i32 = next().parse().unwrap();
-        let b: i32 = next().parse().unwrap();
-        writeln!(stdout, "{}", a + b).unwrap();
-    }
-    print!("{stdout}");
 }
