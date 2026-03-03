@@ -1,1 +1,2 @@
+mod kmp;
 mod trie;
